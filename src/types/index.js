@@ -1,4 +1,3 @@
-// definer una serie de acciones para saber 
-// que esta pasando en la palicacion 
-// se escriben de esta cierta manera 
-export const FORMULARIO_PROYECTO = 'PROYECTO_PROYECTO'; 
+// definer una serie de acciones para saber que pasa en la aplicacion
+export const FORMULARIO_PROYECTO = 'FORMULARIO_PROYECTO'; 
+export const OBTENER_PROYECTOS = 'OBTENER_PROYECTOS'; 

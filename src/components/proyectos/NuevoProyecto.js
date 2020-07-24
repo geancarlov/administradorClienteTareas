@@ -4,9 +4,12 @@ import proyectoContext from '../../context/proyectos/proyectoContext';
 
 const NuevoProyecto = () => { 
     
-    // obtener el state del formulario 
+    // obtener el state del formulario por el conxt
+    // por lo caul se puede consumir a todos los datos del state
     const proyectosContext = useContext(proyectoContext);
-    const { formulario } = proyectoContext;
+    // utilizando el sate del proyecto, context porque se pasa del props 
+    // de los componentes y la fucnioens
+    const { formulario, mostrarFormulario } = proyectosContext;
 
 
     // state para Ptoyecto 
@@ -37,13 +40,20 @@ const NuevoProyecto = () => {
 
     }
 
+    // llamamos a la funcion 
+    const onClickFormulario = () => { 
+        mostrarFormulario(); 
+    }
+
     return (
         <Fragment>
             <button
                 type="button"
                 className="btn btn-block btn-primario"
+                onClick = {onClickFormulario}
             >Nuevo Proyecto</button>
 
+            {/* revismao el sate */}
             {
                 formulario ? 
                     ( 
