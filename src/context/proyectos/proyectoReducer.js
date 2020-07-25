@@ -1,20 +1,51 @@
-import { FORMULARIO_PROYECTO, OBTENER_PROYECTOS } from '../../types'
+import { FORMULARIO_PROYECTO, 
+        OBTENER_PROYECTOS, 
+        AGREGAR_PROYECTOS, 
+        VALIDAR_FORMULARIO,
+        PROYECTO_ACTUAL, 
+        ELIMINAR_PROYECTO
+     } from '../../types'
 
-// se regresa un reducer para hacer el cambio del state, segun el type
 export default (state, action) => { 
     switch(action.type) { 
         case FORMULARIO_PROYECTO : 
             return { 
-                // dejamos todo el sate como y solo cambiamos el formaulrio 
                 ...state, 
                 formulario: true
             }
         case OBTENER_PROYECTOS: 
             return { 
-                // siempre pasamo la copia del state
                 ...state, 
-                // en esta parte es doende le pamos el arrya de los proyecto  
                 proyectos: action.payload
+            }
+        case AGREGAR_PROYECTOS: 
+            return { 
+                ...state, 
+                proyectos: [...state.proyectos, action.payload], 
+                formulario: false ,
+                errorformulario: false 
+            }
+        case VALIDAR_FORMULARIO: 
+            return {
+                 ...state, 
+                errorformulario: true        
+            }
+        case PROYECTO_ACTUAL: 
+            return { 
+                ...state,
+                //cuando da click se pasa el id, filtramos   los proyectos 
+                // por q pasaremos el id del proyceto como obejto filtrado por el id
+                proyecto: state.proyectos.filter( proyecto => proyecto.id === action.payload) 
+            }
+        case ELIMINAR_PROYECTO: 
+            return { 
+                ...state, 
+                // traemo los que no sean igual al que le di click, dado que lo 
+                // ponemos cuando esta diferetnte, y lo traemos de la lista de proyecto  
+                proyectos: state.proyectos.filter( proyecto => proyecto.id !== action.payload), 
+                // resetamso el proyecto activo para que no se muestre nada 
+                proyecto: null
+
             }
         default: 
             return state;

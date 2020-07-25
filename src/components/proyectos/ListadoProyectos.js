@@ -16,7 +16,7 @@ const ListadoProyectos = () => {
     }, [])
 
     // por si la primera vez no hay proyetos no se renderiza nada
-    if (proyectos.length  === 0 ) return null;
+    if (proyectos.length  === 0 ) return <p>No hay proyectos, comienza creando uno</p>;
 
     
 
