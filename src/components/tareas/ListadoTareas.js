@@ -1,28 +1,23 @@
+// ListadoTareas.js 
 import React, {Fragment, useContext} from 'react'
 import Tarea from './Tarea'
 import proyectoContext from '../../context/proyectos/proyectoContext';
-
+import TareaContext from '../../context/tareas/tareaContext';
+// agregamos para la transicion 
+import { CSSTransition, TransitionGroup} from 'react-transition-group'
 
 const ListadoTareas = () => {
     
-    // extraemos del state principal
     const proyectosContext = useContext(proyectoContext); 
     const { proyecto, eliminarProyecto } = proyectosContext; 
     
-    // si no hay un poryecto seleccionado, regresamos el h2
+    // obtenerm el sate de tareas 
+    const tareasContext = useContext(TareaContext); 
+    const { tareasproyecto } = tareasContext;
+
     if(!proyecto) return <h2>Selecciona un proyecto</h2>;
     
-    // se si se selccionado con Array Destructuring extrameos el prouecto
     const [proyectoActual] = proyecto; 
-
-    
-
-    const tareasProyecto = [ 
-        {nombre: 'Elegir Plataforma', estado: true}, 
-        {nombre: 'Elegir Colores', estado: false}, 
-        {nombre: 'Elegir Plataformas de pago', estado: false},
-        {nombre: 'Elegir Hosting', estado: true}, 
-    ]; 
     
 
     const onClickEliminar = () => {
@@ -36,13 +31,25 @@ const ListadoTareas = () => {
             <h2>Proyecto: {proyectoActual.nombre}</h2>
 
             <ul className="listado-tareas">
-                {tareasProyecto.length === 0 
+                {/* le metemos la trancioncion de esta manera con 
+                una clase pensalisad */}
+                {tareasproyecto.length === 0 
                     ? (<li length="tarea"><p>No hay tareas</p></li>)
-                    : tareasProyecto.map(tarea =>(
-                        <Tarea 
-                            tarea ={tarea}
-                        />
-                    ))
+                    : <TransitionGroup>
+                        {tareasproyecto.map(tarea =>(
+                            <CSSTransition
+                                key={tarea.id}
+                                timeout={200}
+                                classNames="tarea"
+                            >
+                                <Tarea 
+                                    tarea ={tarea}
+                                />
+                            </CSSTransition>
+                        ))}
+                    </TransitionGroup> 
+
+                    
                 }
 
             </ul>
