@@ -1,5 +1,6 @@
-// ListadoTareas.js 
-import React, {Fragment, useContext} from 'react'
+// cliente_mern > src > components > proyectos > ListadoTareas.js 
+ 
+import React, {Fragment, useContext} from 'react';
 import Tarea from './Tarea'
 import proyectoContext from '../../context/proyectos/proyectoContext';
 import TareaContext from '../../context/tareas/tareaContext';
@@ -21,7 +22,8 @@ const ListadoTareas = () => {
     
 
     const onClickEliminar = () => {
-         eliminarProyecto(proyectoActual.id); 
+        // le pasamos a _ de id 
+         eliminarProyecto(proyectoActual._id); 
     }
 
 

@@ -1,4 +1,5 @@
-// Proyecto.js
+// cliente_mern > src > components > proycetos > Proyecto.js 
+
 import React, { useContext } from 'react';
 import proyectoContext from '../../context/proyectos/proyectoContext';
 import TareaContext from '../../context/tareas/tareaContext';
@@ -22,7 +23,8 @@ const Proyecto = ({proyecto}) => {
             <button
                 type="button"
                 className="btn btn-blank"
-                onClick={() => seleccionarProyecto(proyecto.id)}
+                // se poen con _id por mongo y com se guarda
+                onClick={() => seleccionarProyecto(proyecto._id)}
             >{proyecto.nombre}</button>
         </li>
      );

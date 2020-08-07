@@ -1,9 +1,12 @@
+// cliente_mern > src > context > proyectos > ProyectoReducer.js 
+
 import { FORMULARIO_PROYECTO, 
         OBTENER_PROYECTOS, 
         AGREGAR_PROYECTOS, 
         VALIDAR_FORMULARIO,
         PROYECTO_ACTUAL, 
-        ELIMINAR_PROYECTO
+        ELIMINAR_PROYECTO, 
+        PROYECTO_ERROR
      } from '../../types'
 
 export default (state, action) => { 
@@ -35,17 +38,22 @@ export default (state, action) => {
                 ...state,
                 //cuando da click se pasa el id, filtramos   los proyectos 
                 // por q pasaremos el id del proyceto como obejto filtrado por el id
-                proyecto: state.proyectos.filter( proyecto => proyecto.id === action.payload) 
+                proyecto: state.proyectos.filter( proyecto => proyecto._id === action.payload) 
             }
         case ELIMINAR_PROYECTO: 
             return { 
                 ...state, 
                 // traemo los que no sean igual al que le di click, dado que lo 
                 // ponemos cuando esta diferetnte, y lo traemos de la lista de proyecto  
-                proyectos: state.proyectos.filter( proyecto => proyecto.id !== action.payload), 
+                proyectos: state.proyectos.filter( proyecto => proyecto._id !== action.payload), 
                 // resetamso el proyecto activo para que no se muestre nada 
                 proyecto: null
 
+            }
+        case PROYECTO_ERROR: 
+            return { 
+                ...state, 
+                mensaje: action.payload
             }
         default: 
             return state;
