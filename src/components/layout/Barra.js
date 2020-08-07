@@ -1,11 +1,26 @@
-import React from 'react'; 
+// cliente_mern > src > components > layout > Barra.js 
+
+import React, { useContext, useEffect } from 'react'; 
+import AuthContext from '../../context/autentificacion/authContext';
 
 const Barra = () => { 
+    
+    const authToken = useContext(AuthContext)
+    const { usuario, usuarioAutenticado, cerrarSesion  } = authToken; 
+
+    useEffect(() => {
+        usuarioAutenticado();
+    }, []);
+
+
     return (
         <header className="app-header">
-            <p className="nombre-usuario"> Hola <span>Gean Carlo</span> </p>
+            {usuario ? <p className="nombre-usuario"> Hola <span>{usuario.nombre}</span> </p> : null }
             <nav className="nav-principal">
-                <a href="#!">Cerrar Sesion</a>
+                <button
+                    className="btn btn-blank cerrar-sesion"
+                    onClick={() => cerrarSesion()}
+                >Cerrar Sesion</button>
             </nav>
         </header>
     ); 

@@ -1,14 +1,32 @@
-// components > auth > NuevaCuenta.js
-import React, {useState, useContext} from 'react';
+// cliente_mern > src > componentes > auth > nueva cuenta.js 
+import React, {useState, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import AlertaContext from '../../context/alertas/alertaContext';
+import AuthContext from '../../context/autentificacion/authContext';
 
-const NuevaCuenta = () => {
+const NuevaCuenta = (props) => {
     
     // extraemos los valores del context 
     const alertaContext = useContext(AlertaContext); 
     const { alerta, mostrarAlerta } = alertaContext;
 
+    const authContext = useContext(AuthContext); 
+    const { mensaje, autenticado, registrarUsuario } = authContext;
+    
+    // en caso del que el usario se haya registrado se auntenfico
+    // registro o se duplico, cuando haya mensaje es cuadno se agrega se carga 
+    useEffect(() => { 
+        if(autenticado) {
+            // awa ponemos si el usario se registro correctametne 
+            // le enviamos a proyectos por react rauter dom 
+            props.history.push('/proyectos')
+        }
+        // madname el mensaje del state del server de respuesta del errror 
+        // al state del alerta de mensaje
+        if(mensaje) { 
+            mostrarAlerta(mensaje.msg, mensaje.categoria); 
+        }
+    }, [mensaje, autenticado, props.history])
 
     // state para iniciar secion 
     const [usuario, guardarUsario] = useState({ 
@@ -54,8 +72,12 @@ const NuevaCuenta = () => {
         }
         
 
-        // pasar a action 
-
+        // pasar a action, del context enviado un post 
+        registrarUsuario({ 
+            nombre, 
+            email,
+            password
+        })
     }
 
     return ( 
