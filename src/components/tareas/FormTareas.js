@@ -18,7 +18,11 @@ const FormTareas = () => {
             obtenerTareas, 
             actualziarTarea, 
             limpiarTarea } = tareasContext;
-
+    
+    const [tarea, guardarTarea] = useState({ 
+        nombre: ''
+    })
+        
     useEffect(()=>{
         if ( tareaseleccionada !== null ) { 
             guardarTarea(tareaseleccionada)
@@ -27,14 +31,10 @@ const FormTareas = () => {
                 nombre: ''
             })
         }
-    },[tareaseleccionada])
+    },[tareaseleccionada]);
 
 
-    const [tarea, guardarTarea] = useState({ 
-        nombre: ''
-
-    })
-
+    
     const { nombre } = tarea;
 
     if(!proyecto) return null; 
@@ -58,26 +58,22 @@ const FormTareas = () => {
         } 
 
         if(tareaseleccionada === null ){ 
-            tarea.proyectoId = proyectoActual.id;    
-            tarea.estado = false; 
-            agregarTarea(tarea);
+            //le paramso el id del proyecto
+            tarea.proyecto = proyectoActual._id;     
+            agregarTarea(tarea, proyectoActual._id);
         } else { 
- 
             actualziarTarea(tarea);
-
- 
             limpiarTarea();
         }
 
  
-        obtenerTareas(proyectoActual.id);
+        obtenerTareas(proyectoActual._id);
 
  
         guardarTarea({ 
             nombre: ''
         })
 
-        
     }
 
 
@@ -100,7 +96,6 @@ const FormTareas = () => {
                     <input 
                         type="submit"
                         className="btn btn-primario btn-submit btn-block"
-                        // vemo si tenemo suna terea selccionada 
                         value={tareaseleccionada ? 'Editar Tarea' : "Agregar Tarea" }
                         
                     />

@@ -17,6 +17,7 @@ const Proyectos = () => {
     // no manda la info del usario logeado, se manteria la sesion por reacar 
     useEffect(() => {
         usuarioAutenticado();
+        // eslint-disable-next-line
     }, [])
 
     return ( 

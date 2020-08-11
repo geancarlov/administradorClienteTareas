@@ -6,29 +6,22 @@ import AuthContext from '../../context/autentificacion/authContext';
 
 const NuevaCuenta = (props) => {
     
-    // extraemos los valores del context 
     const alertaContext = useContext(AlertaContext); 
     const { alerta, mostrarAlerta } = alertaContext;
 
     const authContext = useContext(AuthContext); 
     const { mensaje, autenticado, registrarUsuario } = authContext;
     
-    // en caso del que el usario se haya registrado se auntenfico
-    // registro o se duplico, cuando haya mensaje es cuadno se agrega se carga 
     useEffect(() => { 
         if(autenticado) {
-            // awa ponemos si el usario se registro correctametne 
-            // le enviamos a proyectos por react rauter dom 
             props.history.push('/proyectos')
         }
-        // madname el mensaje del state del server de respuesta del errror 
-        // al state del alerta de mensaje
         if(mensaje) { 
             mostrarAlerta(mensaje.msg, mensaje.categoria); 
         }
+        // eslint-disable-next-line
     }, [mensaje, autenticado, props.history])
 
-    // state para iniciar secion 
     const [usuario, guardarUsario] = useState({ 
         nombre: '',
         email: '', 
@@ -49,7 +42,6 @@ const NuevaCuenta = (props) => {
     const onSubmit = (e) => { 
          e.preventDefault(); 
        
-         // bvalidar que no haya campos vacios 
         if( nombre.trim() === "" ||
             email.trim() === "" ||
             password.trim() === "" ||
@@ -58,21 +50,17 @@ const NuevaCuenta = (props) => {
                 return
         }
 
-        // password min de 6 caracteres
         if(password.length < 6 ) { 
             mostrarAlerta('El password debe de ser de al menos 6 caracteres', 'alerta-error'); 
-            // para no ejecutar la siguiente linea
             return 
         }
         
-        // los password sean iguales 
         if(password !== confirmar) { 
             mostrarAlerta('Los passwords no son iguales', 'alerta-error'); 
             return
         }
         
 
-        // pasar a action, del context enviado un post 
         registrarUsuario({ 
             nombre, 
             email,
@@ -82,7 +70,6 @@ const NuevaCuenta = (props) => {
 
     return ( 
         <div className="form-usuario">
-            {/* aqui, se pone le state de alerta  */}
             {alerta ? (<div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div> ) : 
                 null }
 

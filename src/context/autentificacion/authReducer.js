@@ -19,14 +19,6 @@ export default (state, action) => {
                 mensaje: null,
                 cargando: false
             }
-        case REGISTRO_ERROR: 
-            
-            return { 
-                ...state, 
-                token: null, 
-                mensaje: action.payload,
-                cargando: false
-            }
         case OBTENER_USUARIO: 
             return { 
                 ...state, 
