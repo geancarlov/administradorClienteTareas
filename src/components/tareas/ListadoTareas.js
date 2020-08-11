@@ -15,7 +15,7 @@ const ListadoTareas = () => {
     const { tareasproyecto } = tareasContext;
     
     
-    if (!proyecto) return <h2>Selecciona un proyecto</h2>;
+    if (!proyecto) return <h2>Selecciona una Meta</h2>;
     
     const [proyectoActual] = proyecto; 
     

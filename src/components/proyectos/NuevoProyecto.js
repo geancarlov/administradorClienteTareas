@@ -52,7 +52,7 @@ const NuevoProyecto = () => {
                 type="button"
                 className="btn btn-block btn-primario"
                 onClick = {onClickFormulario}
-            >Nuevo Proyecto</button>
+            >Nueva Meta</button>
 
             {
                 formulario ? 
@@ -64,7 +64,7 @@ const NuevoProyecto = () => {
                             <input 
                                 type="text"
                                 className="input-text"
-                                placeholder="Nombre Proyceto"
+                                placeholder="Nombre de Meta"
                                 name="nombre"
                                 value = {nombre}
                                 onChange={onChangeProyecto}
@@ -73,7 +73,7 @@ const NuevoProyecto = () => {
                             <input 
                                 type="submit"
                                 className="btn btn-primario btn-block"
-                                value="Agregar Proyecto"
+                                value="Agregar Meta"
                             />
             
                         </form>

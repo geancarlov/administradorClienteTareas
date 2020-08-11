@@ -291,7 +291,7 @@ aside  {
 .form-usuario {
     background-color: var(--gris2);
     height: 100vh;
-    min-height: 800px;
+    min-height: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -360,4 +360,51 @@ aside  {
 .alerta-error {
   background-color: rgb(230, 78, 78);
   color: var(--blanco);
+}
+
+/* portado */
+.encambesado{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #009f9d;
+  width: 100%;
+}
+
+.logo { 
+  width: 50%;
+  background-color: #009f9d;
+}
+.logo h1 { 
+  font-family: 'Anton', sans-serif;
+  font-size: 65px;
+  padding-top: 30px;
+}
+.logo h2 { 
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+}
+.logo h2 span{ 
+  font-size: 20px; 
+}
+
+.pasos {
+  width: 50%;
+  background-color: #86c1d4;
+  text-align: center;
+  justify-content: center;
+  font-size: 15px ;
+  color: var(--gris2);
+}
+.numero { 
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color:#009f9d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto;
+  color: white;
+  font-size: 15px ;
 }

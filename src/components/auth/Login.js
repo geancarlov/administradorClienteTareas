@@ -1,5 +1,5 @@
 // cliente_mern > src > componentes > auth > login.js 
-import React, {useState, useContext, useEffect} from 'react';
+import React, {Fragment, useState, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import AlertaContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autentificacion/authContext';
@@ -58,6 +58,36 @@ const Login = (props) => {
     }
 
     return ( 
+        <Fragment>
+        <div className="encambesado">
+            <div className="logo">
+                <h1>Gestor de Metas</h1>
+                <h2> <span>By</span> Gean Carlo Vitorino</h2>
+            </div>
+            <div className="pasos">
+                <div className="numero" >
+                    <p >1</p>                
+                </div>
+                <p>Create una cuenta</p>
+                <div className="numero" >
+                    <p>2</p>                
+                </div>
+                <p>Ingresa</p>
+                <p>Creata tus metas</p>
+                <div className="numero" >
+                    <p>3</p>                
+                </div>
+                <p>En cada meta, pon pasos especificos</p>
+                <p>Dale completar, con cada avance</p>
+                <p>premiate cuando todos los pasos esten completos</p>
+                <div className="numero" >
+                    <p>4</p>                
+                </div>
+                <p>Disfruto y prospera</p>
+
+            </div>
+        </div>
+        
         <div className="form-usuario">
              {/* aqui, se pone le state de alerta  */}
              {alerta ? (<div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div> ) :  null }
@@ -106,6 +136,7 @@ const Login = (props) => {
 
             </div>
         </div>
+        </Fragment>
      );
 }
  

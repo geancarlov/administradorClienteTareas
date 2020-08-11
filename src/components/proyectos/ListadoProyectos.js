@@ -27,7 +27,7 @@ const ListadoProyectos = () => {
         // eslint-disable-next-line
     }, [mensaje])
 
-    if (proyectos.length  === 0 ) return <p>No hay proyectos, comienza creando uno</p>;
+    if (proyectos.length  === 0 ) return <p>No hay metas, comienza creando uno</p>;
 
     
 
